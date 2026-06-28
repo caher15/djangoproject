@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path
-from myapp import views
+from django.urls import path, include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.hello),
-    path('about/', views.about)
+    path('', include('myapp.urls')) #'' -> prefijo 'home/'
 ]
