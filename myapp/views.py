@@ -6,7 +6,12 @@ from .models import Project, Task
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    title = "Django Course!!"
+    username = "juan"
+    return render(request, 'index.html', {
+        'title' : title,
+        'username' : username
+    })
 
 def hello(request, username):
     return HttpResponse("<h1>Hello World! %s </h1>" % username)
@@ -19,8 +24,11 @@ def about(request):
     return render(request, 'about.html')
 
 def projects(request):
-    projects = list(Project.objects.values())# instancia se convierte en lista de python
-    return render(request , 'projects.html')
+    #projects = list(Project.objects.values())# instancia se convierte en lista de python
+    projects = Project.objects.all()
+    return render(request , 'projects.html', {
+        'projects' : projects
+    })
     #return JsonResponse(projects, safe=False) #objeto y se pasa de safe a false
 
 def tasks(request):
