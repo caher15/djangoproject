@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import Project, Task 
+from .forms import CreateNewTask
 
 # Create your views here.
 def index(request):
@@ -40,4 +41,14 @@ def tasks(request):
         })
     #return HttpResponse('Task: %s' % tasks.title)
 
-    
+def create_task(request):
+    # print(request.GET['title'])
+    # print(request.GET['description'])
+    # create using the foreign key id field to hardcode project with id=2
+    if request.method == 'GET':
+        return render(request, 'create_task.html',{
+            'form' : CreateNewTask()
+        })
+    else:
+        Task.objects.create(title=request.POST['title'], description=request.POST['description'], project_id=2)
+        return redirect('/tasks/')
