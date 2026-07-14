@@ -2,12 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index),
-    path('about/', views.about),
+    path('', views.index, name='index'),
+    path('about/', views.about, name='about'),
     path('hello/<str:username>', views.hello),
     path('send/<int:id>', views.send),
-    path('projects/', views.projects),
-    path('tasks/', views.tasks),
-    path('create_task/', views.create_task),
-    path('create_projects/', views.create_projects)
+    path('projects/', views.projects, name='projects'),
+    path('tasks/', views.tasks, name='tasks'),
+    path('create_task/', views.create_task, name='create_task'),
+    path('create_new_project/', views.create_projects, name="create_project")
 ]
