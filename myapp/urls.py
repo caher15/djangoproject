@@ -8,5 +8,6 @@ urlpatterns = [
     path('send/<int:id>', views.send),
     path('projects/', views.projects),
     path('tasks/', views.tasks),
-    path('create_task/', views.create_task)
+    path('create_task/', views.create_task),
+    path('create_projects/', views.create_projects)
 ]
